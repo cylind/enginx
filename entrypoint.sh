@@ -9,4 +9,4 @@ plugin='v''2r''ay-p''lugin'
 wget https://dl.lamp.sh/files/${plugin}_linux_amd64 -qO /usr/local/bin/${plugin}
 chmod +x /usr/local/bin/${plugin}
 ## start service
-ssserver -s "[::]:9008" -m $METHOD -k ${PASSWORD} --plugin ${plugin} --plugin-opts "server;path=/play"
+ssserver -s "[::]:9008" -m $METHOD -k ${PASSWORD} --plugin ${plugin} --plugin-opts "server;path=/play;loglevel=error"
