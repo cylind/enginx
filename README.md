@@ -1,6 +1,6 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-You can use the v2ray-plugin + ss client, the plug-in method is websocket-tls, the port is 443
+You can use the v2-plugin + ss client, the plug-in method is websocket-tls, the port is 443
 
 ## Reference
 
