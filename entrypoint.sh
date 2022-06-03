@@ -1,7 +1,4 @@
 ## setup nginx
-randomurl=$(wget -qO- 'https://en.wikipedia.org/api/rest_v1/page/random/summary' | jq -r '.content_urls.desktop.page')
-cd /var/www && wget --quiet --mirror --convert-links --adjust-extension --page-requisites --no-parent "$randomurl"
-mv /var/www/en.wikipedia.org/wiki/*.html /var/www/en.wikipedia.org/wiki/index.html
 sed -i "s/PORT/$PORT/g" /etc/nginx/http.d/default.conf && nginx
 ## setup shadowsock-rust
 VERSION=$(wget --no-check-certificate -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep 'tag_name' | cut -d\" -f4)
