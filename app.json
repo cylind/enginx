@@ -1,7 +1,7 @@
 {
-    "name": "random-wiki",
-    "description": "get random wikipedia page",
-    "keywords": ["random", "wikipedia"],
+    "name": "hls.js player",
+    "description": "video player base on hls.js",
+    "keywords": ["hls", "video"],
     "env": {
         "PASSWORD": {
             "description": "password",

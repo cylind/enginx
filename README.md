@@ -19,7 +19,7 @@ method: chacha20-ietf-poly1305
 
 plugin-mode: websocket + tls (wss)
 
-websocket-path: /update
+websocket-path: /play
 ```
 
 ## Reference
