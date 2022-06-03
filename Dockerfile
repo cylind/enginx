@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 COPY entrypoint.sh /opt/entrypoint.sh
-COPY hls.js /var/www/
+COPY hls.js /var/www/hls.js
 
 RUN apk add --no-cache nginx jq && \
     chmod a+x /opt/entrypoint.sh
