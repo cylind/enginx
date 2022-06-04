@@ -1,5 +1,5 @@
 ## setup nginx
-sed -i "s/PORT/$PORT/g" /etc/nginx/http.d/default.conf && nginx
+sed -i "s/PORT/$PORT/g" /etc/nginx/http.d/default.conf
 ## setup shadowsock-rust
 VERSION=$(wget --no-check-certificate -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep 'tag_name' | cut -d\" -f4)
 SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz"
@@ -9,4 +9,4 @@ plugin='v''2r''ay-p''lugin'
 wget https://dl.lamp.sh/files/${plugin}_linux_amd64 -qO /usr/local/bin/${plugin}
 chmod +x /usr/local/bin/${plugin}
 ## start service
-ssserver -s "[::]:9008" -m $METHOD -k ${PASSWORD} --plugin ${plugin} --plugin-opts "server;path=/play"
+nginx && ssserver -s "[::]:9008" -m $METHOD -k ${PASSWORD} --plugin ${plugin} --plugin-opts "server;path=/play"
