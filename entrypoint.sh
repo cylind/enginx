@@ -10,7 +10,7 @@ server {
         index  index.html;
     }
     location /play {
-    if ($http_upgrade != "websocket") {
+    if (\$http_upgrade != "websocket") {
         return 404;
     }
     proxy_pass http://127.0.0.1:9008;
