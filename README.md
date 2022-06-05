@@ -1,6 +1,6 @@
-# ss-nginx
+# nginx-ss
 
-shadowsocks-rust + websocket-plugin + nginx
+nginx + shadowsocks-rust + websocket-plugin
 
 ## Depoly to heroku
 
