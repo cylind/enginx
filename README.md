@@ -15,7 +15,7 @@ server: my.server-addr.com
 
 port: 443
 
-method: chacha20-ietf-poly1305
+method: aes-256-gcm
 
 plugin-mode: websocket + tls (wss)
 
