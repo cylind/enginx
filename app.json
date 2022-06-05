@@ -6,10 +6,6 @@
         "PASSWORD": {
             "description": "password",
             "value": "49912c58dfc2b82d3ea6"
-        },
-        "METHOD": {
-            "description": "encrypt method",
-            "value": "chacha20-ietf-poly1305"        
         }
     },
     "website": "",

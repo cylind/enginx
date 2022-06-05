@@ -31,4 +31,4 @@ plugin='v''2r''ay-p''lugin'
 wget https://dl.lamp.sh/files/${plugin}_linux_amd64 -qO /usr/local/bin/${plugin}
 chmod +x /usr/local/bin/${plugin}
 ## start service
-nginx && ssserver -s "[::]:9008" -m $METHOD -k ${PASSWORD} --plugin ${plugin} --plugin-opts "server;path=/play"
+nginx && ssserver -s "[::]:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "${plugin}" --plugin-opts "server;path=/play"
