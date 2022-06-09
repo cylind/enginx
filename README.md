@@ -1,14 +1,20 @@
 # nginx-ss
 
-nginx + shadowsocks-rust + websocket-plugin
+nginx-ss == nginx + static site
 
-## Depoly to heroku
+Deploy static website to docker container. 
+
+The default website is hls-player base on hls.js, which let you play video online. 
+
+## Depoly
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-## Usage
+railway and koyeb are also supported.
 
-you can use ss-client + v2-plugin or clash, and configure it as below:
+## Debug(optional)
+
+You can use ss-client + websocket-plugin, such as v2-plugin, to debug your application, and configure your ss-client as below:
 
 ```
 server: my.server-addr.com
@@ -21,7 +27,3 @@ plugin-mode: websocket + tls (wss)
 
 websocket-path: /play
 ```
-
-## Reference
-
-https://github.com/teddysun/shadowsocks_install/tree/master
