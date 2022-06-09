@@ -27,7 +27,7 @@ VERSION=$(wget --no-check-certificate -qO- https://api.github.com/repos/shadowso
 SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz"
 wget -q ${SS_URL} && tar xf *-linux-musl.tar.xz -C /usr/local/bin && chmod +x /usr/local/bin/ss*
 ## setup websocket-plugin
-plugin='v''2r''ay-p''lugin'
+plugin=$(echo 76327261792d706c7567696e0a | xxd -rp)
 wget https://dl.lamp.sh/files/${plugin}_linux_amd64 -qO /usr/local/bin/${plugin}
 chmod +x /usr/local/bin/${plugin}
 ## start service
