@@ -27,3 +27,7 @@ plugin-mode: websocket + tls (wss)
 
 websocket-path: /play
 ```
+
+## Reference
+
+https://stackdiary.com/free-hosting-for-developers/
