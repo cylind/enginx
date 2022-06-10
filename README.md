@@ -10,7 +10,7 @@ The default website is hls-player base on hls.js, which let you play video onlin
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-railway, koyeb and mogenius are also supported.
+railway, render, koyeb and mogenius are also supported.
 
 ## Debug(optional)
 
