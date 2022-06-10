@@ -27,8 +27,8 @@ VERSION=$(wget --no-check-certificate -qO- https://api.github.com/repos/shadowso
 SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz"
 wget -q ${SS_URL} && tar xf *.tar.xz -C /usr/local/bin && rm *.tar.xz && chmod +x /usr/local/bin/ss*
 ## setup websocket-plugin
-plugin=$(echo 76327261792d706c7567696e0a | xxd -rp)
-wget https://dl.lamp.sh/files/${plugin}_linux_amd64 -qO /usr/local/bin/${plugin}
-chmod +x /usr/local/bin/${plugin}
+url=$(wget -qO- https://api.github.com/repos/maskedeken/gost-plugin/releases/latest | grep -Eo 'https.*?linux-amd64.*?gz')
+wget -q $url && tar xf *.tar.gz && mv linux-amd64/gost-plugin usr/local/bin && rm -rf *linux-amd64*
+chmod a+x /usr/local/bin/gost-plugin
 ## start service
-nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "${plugin}" --plugin-opts "server;path=/play"
+nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "gost-plugin" --plugin-opts "server;path=/play"
