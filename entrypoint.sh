@@ -3,8 +3,8 @@
 ## setup nginx
 cat << EOF > /etc/nginx/http.d/default.conf
 server {
-    listen ${PORT} default_server;
-    listen [::]:${PORT} default_server;
+    listen ${PORT};
+    listen [::]:${PORT};
     location / {
         root   /var/www/hls.js;
         index  index.html;
