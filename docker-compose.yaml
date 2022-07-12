@@ -1,5 +1,0 @@
-services:
-  nginx-ss:
-    build: .
-    ports:
-      - "80:80"
