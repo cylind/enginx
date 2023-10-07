@@ -27,8 +27,7 @@ VERSION=$(wget -O- https://web-dl.pages.dev/https://api.github.com/repos/shadows
 SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz"
 wget ${SS_URL} && tar xf shadowsocks-*.tar.xz -C /usr/local/bin && rm shadowsocks-*.tar.xz && chmod a+x /usr/local/bin/ss*
 ## setup websocket-plugin
-url=$(wget -O- "https://web-dl.pages.dev/https://api.github.com/repos/maskedeken/gost-plugin/releases/latest" | grep -Eo 'https.*?gost-plugin-linux-amd64.*?gz')
-wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz && mv ./linux-amd64/gost-plugin /usr/local/bin && rm -rf *linux-amd64*
-chmod a+x /usr/local/bin/gost-plugin
+wget https://dl.lamp.sh/files/v2ray-plugin_linux_amd64 -qO /usr/local/bin/v2ray-plugin
+chmod +x /usr/local/bin/v2ray-plugin
 ## start service
-nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "gost-plugin" --plugin-opts "server;path=/play"
+nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "v2ray-plugin" --plugin-opts "server;path=/play"
