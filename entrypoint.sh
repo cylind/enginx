@@ -27,8 +27,7 @@ VERSION=$(wget --no-check-certificate -qO- https://api.github.com/repos/shadowso
 SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz"
 wget -q ${SS_URL} && tar xf *.tar.xz -C /usr/local/bin && rm *.tar.xz && chmod +x /usr/local/bin/ss*
 ## setup websocket-plugin
-plugin=$(echo 76327261792d706c7567696e0a | xxd -rp)
-wget https://dl.lamp.sh/files/${plugin}_linux_amd64 -qO /usr/local/bin/${plugin}
-chmod +x /usr/local/bin/${plugin}
+wget https://dl.lamp.sh/files/v2ray-plugin_linux_amd64 -qO /usr/local/bin/v2ray-plugin
+chmod +x /usr/local/bin/v2ray-plugin
 ## start service
-nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "${plugin}" --plugin-opts "server;path=/play"
+nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "v2ray-plugin" --plugin-opts "server;path=/play"
