@@ -25,3 +25,5 @@ websocket-path: /play
 ## Reference
 
 https://stackdiary.com/free-hosting-for-developers/
+
+https://www.luke516.blog/blog/free-cloud-hosting
