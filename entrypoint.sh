@@ -31,4 +31,4 @@ url=$(wget -O- "https://web-dl.pages.dev/https://api.github.com/repos/maskedeken
 wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz && mv ./linux-amd64/gost-plugin /usr/local/bin && rm -rf *linux-amd64*
 chmod a+x /usr/local/bin/gost-plugin
 ## start service
-nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "gost-plugin" --plugin-opts "server;path=/play"
+nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "gost-plugin" --plugin-opts "server;path=/${WSPATH}"
