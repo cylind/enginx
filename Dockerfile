@@ -10,6 +10,6 @@ ENV PASSWORD=PHKPixmEq6oAeQX5
 RUN apk add --no-cache nginx && \
     chmod a+x /opt/entrypoint.sh
 
-EXPOSE 3000
+EXPOSE 80
 
 ENTRYPOINT ["sh", "-c", "/opt/entrypoint.sh"]
