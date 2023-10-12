@@ -28,7 +28,7 @@ SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERS
 wget ${SS_URL} && tar xf shadowsocks-*.tar.xz -C /usr/local/bin && rm shadowsocks-*.tar.xz && chmod a+x /usr/local/bin/ss*
 ## setup websocket-plugin
 url=$(wget -O- "https://api.github.com/repos/maskedeken/gost-plugin/releases/latest" | grep -Eo 'https.*?gost-plugin-linux-amd64.*?gz')
-wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz && mv ./linux-amd64/gost-plugin /usr/local/bin && rm -rf *linux-amd64*
-chmod a+x /usr/local/bin/gost-plugin
+wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz && mv ./linux-amd64/gost-plugin /usr/local/bin/ws-plugin && rm -rf *linux-amd64*
+chmod a+x /usr/local/bin/ws-plugin
 ## start service
-nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "gost-plugin" --plugin-opts "server;path=${WSPATH}"
+nginx && ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH}"
