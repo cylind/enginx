@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## setup nginx
-cat << EOF > /etc/nginx/http.d/default.conf
+cat << EOF > /etc/nginx/conf.d/default.conf
 server {
     listen ${PORT} default_server;
     listen [::]:${PORT} default_server;
