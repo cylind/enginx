@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:alpine
 
 COPY hls.js /var/www/hls.js
 COPY entrypoint.sh /opt/entrypoint.sh
