@@ -5,6 +5,7 @@ cat << EOF > /etc/nginx/http.d/default.conf
 server {
     listen ${PORT} default_server;
     listen [::]:${PORT} default_server;
+    access_log off;
     location / {
         root   /var/www/hls.js;
         index  index.html;
