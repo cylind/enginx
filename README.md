@@ -4,9 +4,11 @@ Deploy static website and shadowsocks on docker container.
 
 nginx-ss == nginx + shadowsocks + staic website
 
+```
 Traffic --> Nginx --> Websocket proxy --> Shadowsocks server --> Internet 
                   |
                   |--> Static website
+```
 
 The default website is hls-player base on hls.js, which let you play video online.
 
