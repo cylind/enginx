@@ -24,9 +24,9 @@ server {
 }
 EOF
 ## setup shadowsock-rust
-VERSION=$(wget -O- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep 'tag_name' | cut -d\" -f4)
+VERSION=$(wget -qO- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep 'tag_name' | cut -d\" -f4)
 SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz"
-wget ${SS_URL} && tar xf shadowsocks-*.tar.xz -C /usr/local/bin && rm shadowsocks-*.tar.xz && chmod a+x /usr/local/bin/ss*
+wget -q ${SS_URL} && tar xf shadowsocks-*.tar.xz -C /usr/local/bin && rm shadowsocks-*.tar.xz && chmod a+x /usr/local/bin/ss*
 ## setup websocket-plugin
 wget 'https://dl.lamp.sh/files/'v'2r'a'y'-p'lugin_linux_amd64' -qO /usr/local/bin/ws-plugin
 chmod +x /usr/local/bin/ws-plugin
