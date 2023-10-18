@@ -16,16 +16,16 @@ The default website is hls-player base on hls.js, which let you play video onlin
 
 **Lightweight**: Use Alpine as the base system.
 
-**Secure**: Use AES-256-GCM to encrpt data.
+**Secure**: Use AES-256-GCM to encrypt data.
 
-**Privacy**: Nginx access_log off;Shadowsocks log level is warning(do not log access ip)
+**Privacy**: Nginx access_log off;Shadowsocks log level is warning(do not log access ip);ws-plugin no log.
 
 ## Config
 
 **Docker ENV（optional）**:
 
 ```
-PASSWORD: password of ss
+PASSWORD: password of shadowsocks
 WSPATH: websocket path
 PORT: nginx server port
 ```
@@ -37,7 +37,7 @@ server: my.server-addr.com
 
 port: 443
 
-password: password of ss
+password: password of shadowsocks
 
 method: aes-256-gcm
 
@@ -45,22 +45,6 @@ plugin: gost-plugin
 
 plugin-opts: mode=wss;serverName=my.server-addr.com;path=/WSPATH
 ```
-
-## Branch difference
-
-**main**: use `alpine:latest` as base system, whose default config dir is `/etc/nginx/httpp.d` (`/etc/nginx/nginx.conf` include `/etc/nginx/conf.d` dir, but do not have `/etc/nginx/conf.d` dir by default)
-
-
-
-**nginx-alpine-slim**:  use `nginx:alpine-slim` as base system, whose default config dir is `/etc/nginx/conf.d` (it do not have `/etc/nginx/http.d` dir, and  `/etc/nginx/nginx.conf` do not include `/etc/nginx/http.d` dir either)
-
-
-
-**nginx-latest**: like nginx-alpine-slim, but use `nginx:latest` as base system.
-
-
-
-**v2**: like main, but use v 2 r a y as websocket plugin.
 
 ## Reference
 
