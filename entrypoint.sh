@@ -32,6 +32,6 @@ url=$(wget -O- "https://api.github.com/repos/maskedeken/gost-plugin/releases/lat
 wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz && mv ./linux-amd64/gost-plugin /usr/local/bin/ws-plugin && rm -rf *linux-amd64*
 chmod a+x /usr/local/bin/ws-plugin
 ## start service
-ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH};logLevel=0" -d
+ssserver -s "127.0.0.1:9008" -m "${ENCRYPT_METHOD}" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH};logLevel=0" -d
 nginx -g "daemon off;"
 
