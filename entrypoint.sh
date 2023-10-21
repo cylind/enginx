@@ -24,5 +24,5 @@ server {
 }
 EOF
 ## start service
-ssserver -s "127.0.0.1:9008" -m "aes-256-gcm" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH};loglevel=none" -d
+ssserver -s "127.0.0.1:9008" -m "${ENCRYPT_METHOD}" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH};loglevel=none" -d
 nginx -g "daemon off;"

@@ -8,6 +8,7 @@ COPY entrypoint.sh /opt/entrypoint.sh
 ENV PORT=3000
 ENV WSPATH=/play
 ENV PASSWORD=PHKPixmEq6oAeQX5
+ENV ENCRYPT_METHOD=aes-256-gcm
 
 RUN chmod a+x /opt/entrypoint.sh /usr/local/bin/*
 
