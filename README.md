@@ -16,7 +16,7 @@ The default website is hls-player base on hls.js, which let you play video onlin
 
 **Lightweight**: Use Alpine as the base system.
 
-**Secure**: Use AES-256-GCM to encrypt data.
+**Secure**: Use  authenticated encryption with additional data (AEAD) algorithm to encrypt data.
 
 **Privacy**: Nginx access_log off;Shadowsocks log level is warning(do not log access ip);ws-plugin no log.
 
@@ -26,6 +26,7 @@ The default website is hls-player base on hls.js, which let you play video onlin
 
 ```
 PASSWORD: password of shadowsocks
+ENCRYPT_METHOD: AEAD  algorithm(chacha20-ietf-poly1305, aes-256-gcm, aes-128-gcm, plain, none)
 WSPATH: websocket path
 PORT: nginx server port
 ```
@@ -39,12 +40,20 @@ port: 443
 
 password: password of shadowsocks
 
-method: aes-256-gcm
+method: chacha20-ietf-poly1305(default)
 
 plugin: gost-plugin
 
 plugin-opts: mode=wss;serverName=my.server-addr.com;path=/WSPATH
 ```
+
+## Free Container Platform
+
+https://render.com/
+
+https://northflank.com/
+
+https://www.back4app.com/
 
 ## Reference
 
