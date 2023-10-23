@@ -26,15 +26,17 @@ function parseURLSearch(search) {
   return queryParams;
 }
 
-new Vue({
-  el: '#app',
-  data: {
-    secret_key: 'JBSWY3DPEHPK3PXP',
-    digits: 6,
-    period: 30,
-    updatingIn: 30,
-    token: null,
-    clipboardButton: null,
+const app = Vue.createApp({
+  data() {
+    return {
+      secret_key: 'JBSWY3DPEHPK3PXP',
+      digits: 6,
+      period: 30,
+      algorithm: 'SHA1',
+      updatingIn: 30,
+      token: null,
+      clipboardButton: null,
+    };
   },
 
   mounted: function () {
@@ -54,10 +56,10 @@ new Vue({
   computed: {
     totp: function () {
       return new OTPAuth.TOTP({
-        algorithm: 'SHA1',
+        algorithm: this.algorithm,
         digits: this.digits,
         period: this.period,
-        secret: OTPAuth.Secret.fromB32(stripSpaces(this.secret_key)),
+        secret: OTPAuth.Secret.fromBase32(stripSpaces(this.secret_key)),
       });
     }
   },
@@ -89,6 +91,12 @@ new Vue({
       if (queryParams.period) {
         this.period = queryParams.period;
       }
+
+      if (queryParams.algorithm) {
+        this.algorithm = queryParams.algorithm;
+      }
     }
   }
 });
+
+app.mount('#app');
