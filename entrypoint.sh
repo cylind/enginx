@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ## setup vserver
+prot="v""le""ss"
 cat << EOF > /etc/opt/config.json
 {
 	"log": {"access": "/dev/null","error": "/dev/null","loglevel": "none"},
@@ -8,7 +9,7 @@ cat << EOF > /etc/opt/config.json
 	{
 			"listen": "127.0.0.1",
 			"port": 9008,
-			"protocol": "vless",
+			"protocol": "$prot",
 			"settings": {"clients": [{"id": "$UUID"}],"decryption": "none"},
 			"streamSettings": {"network": "ws","wsSettings": {"path": "$WSPATH"}}
 	}
