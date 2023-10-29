@@ -11,7 +11,7 @@ The default website is hls-player base on hls.js, which let you play video onlin
 ENV:
 
 ```
-PASSWORD: password of ss
+UUID: User ID
 WSPATH: websocket path
 PORT: nginx server port
 ```
@@ -23,11 +23,11 @@ server: my.server-addr.com
 
 port: 443
 
-method: chacha20-ietf-poly1305
+protocol: vless + tls
 
-plugin-mode: websocket + tls (wss)
+UUID: User ID
 
-websocket-path: /your_websocket_patn
+websocket-path: /your_websocket_path
 ```
 
 ## Reference
