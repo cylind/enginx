@@ -1,5 +1,23 @@
 #!/bin/sh
 
+## setup vserver
+cat << EOF > /etc/opt/config.json
+{
+	"log": {"access": "/dev/null","error": "/dev/null","loglevel": "none"},
+	"inbounds": [
+	{
+			"listen": "127.0.0.1",
+			"port": 9008,
+			"protocol": "vless",
+			"settings": {"clients": [{"id": "$UUID"}],"decryption": "none"},
+			"streamSettings": {"network": "ws","wsSettings": {"path": "$WSPATH"}}
+	}
+	],
+	"outbounds": [{"protocol": "freedom"}],
+	"dns": {"servers": ["1.1.1.1","8.8.8.8","localhost"]}
+}
+EOF
+
 ## setup nginx
 cat << EOF > /etc/nginx/conf.d/default.conf
 server {
@@ -23,6 +41,7 @@ server {
   }
 }
 EOF
+
 ## start service
-ssserver -s "127.0.0.1:9008" -m "${ENCRYPT_METHOD}" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH};loglevel=none" -d
+vserver run -c /etc/opt/config.json > /dev/null 2>&1 &
 nginx -g "daemon off;"
