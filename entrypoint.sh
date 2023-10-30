@@ -10,7 +10,6 @@ protocol = "$prot"
 uuid = "${UUID}"
 host = "0.0.0.0"
 port = ${PORT}
-insecure = true
 fallback = ":80"
 adv = "ws"
 path = "${WSPATH}"
