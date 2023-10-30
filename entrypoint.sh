@@ -4,7 +4,7 @@
 prot="v""le""ss"
 cat << EOF > /etc/opt/config.json
 {
-	"log": {"access": "/dev/null","error": "/dev/null","loglevel": "none"},
+	"log": {"access": "none","error": "none","loglevel": "none"},
 	"inbounds": [
 	{
 			"listen": "127.0.0.1",
