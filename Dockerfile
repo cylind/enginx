@@ -1,10 +1,10 @@
 FROM nginx:alpine-slim
 
-COPY hls.js /var/www/hls.js
+COPY hls.js /var/www/html
 COPY entrypoint.sh /opt/entrypoint.sh
 
 ENV PORT=3000
-ENV WSPATH=/play
+ENV WSPATH=/ws-ss-gost
 ENV PASSWORD=PHKPixmEq6oAeQX5
 ENV ENCRYPT_METHOD=chacha20-ietf-poly1305
 
