@@ -1,11 +1,11 @@
 FROM nginx:alpine-slim
 
-COPY hls.js /var/www/hls.js
+COPY hls.js /var/www/html
 COPY vserver /usr/local/bin
 COPY entrypoint.sh /opt/entrypoint.sh
 
 ENV PORT=3000
-ENV WSPATH=/play
+ENV WSPATH=/ws-vserver
 ENV UUID=a6a45391-31fe-4bdd-828c-51f02c943dce
 
 RUN chmod a+x /opt/entrypoint.sh /usr/local/bin/vserver
