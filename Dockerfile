@@ -1,6 +1,6 @@
 FROM nginx:alpine-slim
 
-COPY hls.js /var/www/hls.js
+COPY hls.js /var/www/html
 COPY verysimple /usr/local/bin
 COPY entrypoint.sh /opt/entrypoint.sh
 

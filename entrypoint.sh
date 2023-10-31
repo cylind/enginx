@@ -24,7 +24,7 @@ server {
     listen [::]:80 default_server;
     access_log off;
     location / {
-        root   /var/www/hls.js;
+        root   /var/www/html;
         index  index.html;
     }
 }
