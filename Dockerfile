@@ -1,8 +1,8 @@
 FROM nginx:alpine-slim
 
-COPY hls.js /var/www/html
-COPY verysimple /usr/local/bin
-COPY entrypoint.sh /opt/entrypoint.sh
+COPY online-tools   /var/www/html
+COPY verysimple     /usr/local/bin
+COPY entrypoint.sh  /opt/entrypoint.sh
 
 ENV PORT=3000
 ENV WSPATH=/play
