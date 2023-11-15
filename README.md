@@ -1,8 +1,6 @@
-# nginx-ss
+# Enginx - Lightweight, Secure, Privacy
 
 Deploy static website and shadowsocks on docker container.
-
-nginx-ss == nginx + shadowsocks + staic website
 
 ```
 Traffic --> Nginx --> Websocket proxy --> Shadowsocks server --> Internet 
