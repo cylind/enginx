@@ -25,6 +25,6 @@ server {
 EOF
 
 ## start service
-ssserver -s "127.0.0.1:9008" -m "${ENCRYPT_METHOD}" -k "${PASSWORD}" --plugin "ws-plugin" --plugin-opts "server;path=${WSPATH};logLevel=0" -d
+ssserver -s "127.0.0.1:9008" -m "${ENCRYPT_METHOD}" -k "${PASSWORD}" --plugin "gost-plugin" --plugin-opts "server;path=${WSPATH};logLevel=0" -d
 nginx -g "daemon off;"
 
