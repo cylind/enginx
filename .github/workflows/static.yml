@@ -25,4 +25,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create ${{ github.run_id }} ./linux-amd64/gost-plugin v2-plugin ss*
+          gh release create latest ./linux-amd64/gost-plugin v2-plugin ssserver
