@@ -1,6 +1,4 @@
-# nginx-ss
-
-nginx-ss == nginx + static site
+# Enginx
 
 Deploy static website to docker container.
 
