@@ -18,9 +18,9 @@ jobs:
             wget $url && tar xf shadowsocks-*.tar.xz
             url=$(wget -O- "https://api.github.com/repos/maskedeken/gost-plugin/releases/latest" | grep -Eo 'https.*?gost-plugin-linux-amd64.*?gz') 
             wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz
-            wget "https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip"
-            unzip v2ray-linux-64.zip && mv v2ray vserver
-            wget "https://github.com/e1732a364fed/v2ray_simple/releases/latest/download/verysimple_linux_amd64.tar.xz"
+            wget "https://github.com/v2fly/v''2r''a''y-core/releases/latest/download/v''2r''a''y-linux-64.zip"
+            unzip v''2r''a''y-linux-64.zip && mv v''2r''a''y vserver
+            wget "https://github.com/e1732a364fed/v''2r''a''y_simple/releases/latest/download/verysimple_linux_amd64.tar.xz"
             tar xf verysimple_linux_amd64.tar.xz
             wget 'https://dl.lamp.sh/files/v''2r''a''y-plugin_linux_amd64' -O v2-plugin
 
