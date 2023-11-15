@@ -9,6 +9,9 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
       - name: Download ProxyTools
         run: |
             VERSION=$(wget -O- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep 'tag_name' | cut -d\" -f4) 
