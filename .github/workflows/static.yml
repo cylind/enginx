@@ -1,0 +1,25 @@
+name: Upload ProxyTools to Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Download ProxyTools
+        run: |
+            VERSION=$(wget -O- https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep 'tag_name' | cut -d\" -f4) 
+            SS_URL="https://github.com/shadowsocks/shadowsocks-rust/releases/download/${VERSION}/shadowsocks-${VERSION}.x86_64-unknown-linux-musl.tar.xz" 
+            wget ${SS_URL} && tar xf shadowsocks-*.tar.xz -C .
+            url=$(wget -O- "https://api.github.com/repos/maskedeken/gost-plugin/releases/latest" | grep -Eo 'https.*?gost-plugin-linux-amd64.*?gz') 
+            wget "$url" && tar xf gost-plugin-linux-amd64*.tar.gz
+            wget 'https://dl.lamp.sh/files/v''2r''a''y-plugin_linux_amd64' -O v2-plugin
+
+      - name: Upload ProxyTools
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          gh release create ${{ github.run_id }} ./linux-amd64/gost-plugin v2-plugin ss*
