@@ -1,6 +1,6 @@
 FROM nginx:alpine-slim
 
-COPY hls.js /var/www/html
+COPY totp-generator /var/www/html
 COPY entrypoint.sh /opt/entrypoint.sh
 
 ENV PORT=3000
