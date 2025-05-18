@@ -9,9 +9,6 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
-
       - name: Download ProxyTools
         run: |
             V2='v''2r''a''y'
