@@ -51,7 +51,8 @@ RUN chown -R appuser:appgroup /app && \
     mkdir -p /var/run/nginx /var/log/nginx /var/log/supervisor && \
     chown -R appuser:appgroup /var/run/nginx /var/log/nginx /var/cache/nginx /var/log/supervisor /etc/nginx/conf.d && \
     touch /var/run/nginx/nginx.pid && \
-    chown appuser:appgroup /var/run/nginx/nginx.pid
+    chown appuser:appgroup /var/run/nginx/nginx.pid && \
+    sed -i 's|pid /run/nginx.pid;|pid /var/run/nginx/nginx.pid;|' /etc/nginx/nginx.conf
 
 # --- 5. 设置环境变量默认值 ---
 ENV UUID="a6a45391-31fe-4bdd-828c-51f02c943dce"
