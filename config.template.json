@@ -1,0 +1,40 @@
+{
+	"log": {
+		"access": "none",
+		"error": "none",
+		"loglevel": "none"
+	},
+	"inbounds": [
+		{
+			"listen": "127.0.0.1",
+			"port": 9008,
+			"protocol": "${PROTOCOL}",
+			"settings": {
+				"clients": [
+					{
+						"id": "${UUID}"
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "${WSPATH}"
+				}
+			}
+		}
+	],
+	"outbounds": [
+		{
+			"protocol": "freedom"
+		}
+	],
+	"dns": {
+		"servers": [
+			"1.1.1.1",
+			"8.8.8.8",
+			"localhost"
+		]
+	}
+}
