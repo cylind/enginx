@@ -8,10 +8,10 @@ set -e
 export PROTOCOL=${PROTOCOL:-"v""le""ss"}
 
 # 3. 使用 envsubst 渲染配置文件
-# 注意：envsubst 只会替换已导出的环境变量
+# 为 vserver 和 nginx 生成最终的配置文件
 echo "INFO: Generating configurations..."
-envsubst '${PORT} ${WSPATH}' < /app/nginx.template.conf > /etc/nginx/nginx.conf
 envsubst '${UUID} ${WSPATH} ${PROTOCOL}' < /app/config.template.json > /app/config.json
+envsubst '${PORT} ${WSPATH}' < /app/nginx.template.conf > /etc/nginx/nginx.conf
 
 # 4. 启动 supervisord
 echo "INFO: Starting supervisord..."
