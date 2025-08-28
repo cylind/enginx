@@ -50,9 +50,7 @@ RUN chown -R appuser:appgroup /app && \
     chmod +x entrypoint.sh vserver && \
     # Ensure nginx cache is writable and create a placeholder for the main config file
     # so that our non-root user can overwrite it at runtime.
-    chown -R appuser:appgroup /var/cache/nginx && \
-    touch /etc/nginx/nginx.conf && \
-    chown appuser:appgroup /etc/nginx/nginx.conf
+    chown -R appuser:appgroup /var/cache/nginx /etc/nginx
 
 # --- 5. 设置环境变量默认值 ---
 ENV UUID="a6a45391-31fe-4bdd-828c-51f02c943dce"
