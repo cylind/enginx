@@ -21,12 +21,11 @@ FROM nginx:alpine-slim
 
 # --- 1. 创建非 root 用户和用户组 ---
 # 创建一个专用的用户和组来运行应用，增强安全性
-RUN addgroup -g 1001 -S appgroup && \
-    adduser -u 1001 -S appuser -G appgroup
-
-# --- 2. 安装运行时依赖 ---
+# 创建用户和组，并安装运行时依赖
 # gettext 用于 envsubst (模板替换), supervisor 用于进程守护
-RUN apk add --no-cache gettext supervisor
+RUN addgroup -g 1001 -S appgroup && \
+    adduser -u 1001 -S appuser -G appgroup && \
+    apk add --no-cache gettext supervisor
 
 # --- 3. 设置工作目录和复制文件 ---
 WORKDIR /app
