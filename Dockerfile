@@ -33,7 +33,7 @@ COPY online-tools/ html/
 # 基础镜像已包含 gettext-envsubst, 我们只需安装 supervisor
 # 同时设置工作目录权限和脚本执行权限
 RUN apk add --no-cache supervisor && \
-    chown -R nginx:nginx /app  /etc/nginx && \
+    chown -R nginx:nginx /app  /etc/nginx/conf.d && \
     chmod +x entrypoint.sh vserver
 
 # --- 3. 设置环境变量默认值 ---
