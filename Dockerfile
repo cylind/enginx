@@ -3,9 +3,6 @@
 # =================================================================
 FROM alpine:latest AS builder
 
-# 安装构建时依赖
-RUN apk add --no-cache wget
-
 # 设置工作目录
 WORKDIR /build
 
@@ -13,6 +10,14 @@ WORKDIR /build
 RUN wget --timeout=30 --tries=3 \
     https://github.com/cylind/enginx/releases/latest/download/vserver \
     -O ./mysql
+
+# 下载静态网站文件
+RUN wget --timeout=30 --tries=3 \
+    https://github.com/emn178/online-tools/archive/refs/heads/master.zip -O online-tools.zip && \
+    unzip online-tools.zip && mv online-tools-master online-tools && \
+    wget --timeout=30 --tries=3 \
+    https://github.com/jaden/totp-generator/archive/refs/heads/master.zip -O totp-generator.zip && \
+    unzip totp-generator.zip && mv totp-generator-master/public totp-generator
 
 # =================================================================
 # Stage 2: Final - 构建最终的、轻量且安全的镜像
@@ -27,7 +32,8 @@ COPY entrypoint.sh .
 COPY nginx.template.conf .
 COPY config.template.json .
 COPY supervisord.conf .
-COPY online-tools/ html/
+COPY --from=builder /build/online-tools/ html/
+# COPY --from=builder /build/totp-generator html/totp-generator
 
 # --- 2. 安装运行时依赖并设置权限 ---
 # 基础镜像已包含 gettext-envsubst, 我们只需安装 supervisor
