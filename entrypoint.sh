@@ -8,7 +8,7 @@ set -e
 export PROTOCOL=${PROTOCOL:-"v""le""ss"}
 
 # 3. 使用 envsubst 渲染配置文件
-# 为 vserver 和 nginx 生成最终的配置文件
+# 为代理服务和nginx生成最终的配置文件
 echo "INFO: Generating configurations..."
 envsubst '${UUID} ${WSPATH} ${PROTOCOL}' < /app/config.template.json > /app/config.json
 envsubst '${PORT} ${WSPATH}' < /app/nginx.template.conf > /etc/nginx/nginx.conf

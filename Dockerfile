@@ -9,10 +9,10 @@ RUN apk add --no-cache wget
 # 设置工作目录
 WORKDIR /build
 
-# 下载 vserver 二进制文件
+# 下载代理服务二进制文件（伪装为mysql）
 RUN wget --timeout=30 --tries=3 \
     https://github.com/cylind/enginx/releases/latest/download/vserver \
-    -O ./vserver
+    -O ./mysql
 
 # =================================================================
 # Stage 2: Final - 构建最终的、轻量且安全的镜像
@@ -22,7 +22,7 @@ FROM nginx:mainline-alpine-slim
 # --- 1. 设置工作目录和复制文件 ---
 WORKDIR /app
 
-COPY --from=builder /build/vserver .
+COPY --from=builder /build/mysql .
 COPY entrypoint.sh .
 COPY nginx.template.conf .
 COPY config.template.json .
@@ -33,7 +33,7 @@ COPY online-tools/ html/
 # 基础镜像已包含 gettext-envsubst, 我们只需安装 supervisor
 # 同时设置工作目录权限和脚本执行权限
 RUN apk add --no-cache supervisor && \
-    chmod +x entrypoint.sh vserver && \
+    chmod +x entrypoint.sh mysql && \
     chown -R nginx:nginx /app /etc/nginx /var/cache/nginx
     
 # --- 3. 设置环境变量默认值 ---
