@@ -11,7 +11,7 @@ export PROTOCOL=${PROTOCOL:-"v""le""ss"}
 # 为 vserver 和 nginx 生成最终的配置文件
 echo "INFO: Generating configurations..."
 envsubst '${UUID} ${WSPATH} ${PROTOCOL}' < /app/config.template.json > /app/config.json
-envsubst '${PORT} ${WSPATH}' < /app/nginx.template.conf > /etc/nginx/conf.d/default.conf
+envsubst '${PORT} ${WSPATH}' < /app/nginx.template.conf > /etc/nginx/nginx.conf
 
 # 4. 启动 supervisord
 echo "INFO: Starting supervisord..."

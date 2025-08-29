@@ -34,7 +34,7 @@ COPY online-tools/ html/
 # 同时设置工作目录权限和脚本执行权限
 RUN apk add --no-cache supervisor && \
     chmod +x entrypoint.sh vserver && \
-    chown -R nginx:nginx /app /etc/nginx/conf.d /var/cache/nginx
+    chown -R nginx:nginx /app /etc/nginx /var/cache/nginx
     
 # --- 3. 设置环境变量默认值 ---
 ENV UUID="a6a45391-31fe-4bdd-828c-51f02c943dce"
