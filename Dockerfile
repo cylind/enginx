@@ -17,7 +17,7 @@ RUN wget --timeout=30 --tries=3 \
     unzip online-tools.zip && \
     # --- Start: Remove <base> tag from online-tools ---
     cd online-tools-master && \
-    find . -type f -name "*.html" -exec sed -i '/<base href/d' {} +
+    find . -type f -name "*.html" -exec sed -i 's|<base href="/online-tools/">||g' {} +
     # --- End: Remove <base> tag ---
     # wget --timeout=30 --tries=3 \
     # https://github.com/jaden/totp-generator/archive/refs/heads/master.zip -O totp-generator.zip && \
