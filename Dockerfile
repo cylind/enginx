@@ -14,10 +14,14 @@ RUN wget --timeout=30 --tries=3 \
 # 下载静态网站文件
 RUN wget --timeout=30 --tries=3 \
     https://github.com/emn178/online-tools/archive/refs/heads/master.zip -O online-tools.zip && \
-    unzip online-tools.zip && mv online-tools-master online-tools && \
-    wget --timeout=30 --tries=3 \
-    https://github.com/jaden/totp-generator/archive/refs/heads/master.zip -O totp-generator.zip && \
-    unzip totp-generator.zip && mv totp-generator-master/public totp-generator
+    unzip online-tools.zip && \
+    # --- Start: Remove <base> tag from online-tools ---
+    cd online-tools-master && \
+    find . -type f -name "*.html" -exec sed -i '/<base href/d' {} +
+    # --- End: Remove <base> tag ---
+    # wget --timeout=30 --tries=3 \
+    # https://github.com/jaden/totp-generator/archive/refs/heads/master.zip -O totp-generator.zip && \
+    # unzip totp-generator.zip && mv totp-generator-master/public totp-generator
 
 # =================================================================
 # Stage 2: Final - 构建最终的、轻量且安全的镜像
@@ -32,8 +36,8 @@ COPY entrypoint.sh .
 COPY nginx.template.conf .
 COPY config.template.json .
 COPY supervisord.conf .
-COPY --from=builder /build/online-tools/ html/
-# COPY --from=builder /build/totp-generator html/totp-generator
+COPY --from=builder /build/online-tools-master/ html/
+# COPY --from=builder /build/totp-generator/ html/
 
 # --- 2. 安装运行时依赖并设置权限 ---
 # 基础镜像已包含 gettext-envsubst, 我们只需安装 supervisor
