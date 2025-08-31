@@ -6,21 +6,17 @@ FROM alpine:latest AS builder
 # 设置工作目录
 WORKDIR /build
 
-# 下载代理服务二进制文件（伪装为mysql）
-RUN wget --timeout=30 --tries=3 \
-    https://github.com/cylind/enginx/releases/latest/download/vserver \
-    -O ./mysql
-
-# 下载静态网站文件
-RUN wget --timeout=30 --tries=3 \
-    https://github.com/emn178/online-tools/archive/refs/heads/master.zip -O online-tools.zip && \
+# 下载代理工具和静态网站文件
+RUN wget --timeout=30 --tries=3 https://github.com/cylind/enginx/releases/latest/download/vserver -O ./mysql && \
+    wget --timeout=30 --tries=3 https://github.com/emn178/online-tools/archive/refs/heads/master.zip -O online-tools.zip && \
+    # 解压并处理文件
     unzip online-tools.zip && \
-    # --- Start: Remove <base> tag from online-tools ---
     cd online-tools-master && \
-    find . -type f -name "*.html" -exec sed -i 's|<base href="/online-tools/">||g' {} +
-    # --- End: Remove <base> tag ---
-    # wget --timeout=30 --tries=3 \
-    # https://github.com/jaden/totp-generator/archive/refs/heads/master.zip -O totp-generator.zip && \
+    find . -type f -name "*.html" -exec sed -i 's|<base href="/online-tools/">||g' {} + && \
+    cd .. && \
+    # 清理临时文件
+    rm online-tools.zip
+    # wget --timeout=30 --tries=3 https://github.com/jaden/totp-generator/archive/refs/heads/master.zip -O totp-generator.zip && \
     # unzip totp-generator.zip && mv totp-generator-master/public totp-generator
 
 # =================================================================
@@ -31,20 +27,18 @@ FROM nginx:mainline-alpine-slim
 # --- 1. 设置工作目录和复制文件 ---
 WORKDIR /app
 
-COPY --from=builder /build/mysql .
-COPY entrypoint.sh .
-COPY nginx.template.conf .
-COPY config.template.json .
-COPY supervisord.conf .
-COPY --from=builder /build/online-tools-master/ html/
-# COPY --from=builder /build/totp-generator/ html/
+COPY --chown=nginx:nginx entrypoint.sh .
+COPY --chown=nginx:nginx nginx.template.conf .
+COPY --chown=nginx:nginx config.template.json .
+COPY --chown=nginx:nginx supervisord.conf .
+COPY --from=builder --chown=nginx:nginx /build/mysql .
+COPY --from=builder --chown=nginx:nginx /build/online-tools-master/ html/
+# COPY --from=builder --chown=nginx:nginx /build/totp-generator/ html/
 
 # --- 2. 安装运行时依赖并设置权限 ---
-# 基础镜像已包含 gettext-envsubst, 我们只需安装 supervisor
-# 同时设置工作目录权限和脚本执行权限
 RUN apk add --no-cache supervisor && \
     chmod +x entrypoint.sh mysql && \
-    chown -R nginx:nginx /app /etc/nginx /var/cache/nginx
+    chown -R nginx:nginx /etc/nginx /var/cache/nginx
     
 # --- 3. 设置环境变量默认值 ---
 ENV UUID="a6a45391-31fe-4bdd-828c-51f02c943dce"
