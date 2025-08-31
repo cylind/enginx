@@ -38,7 +38,7 @@ COPY --from=builder --chown=nginx:nginx /build/online-tools-master/ html/
 # --- 2. 安装运行时依赖并设置权限 ---
 RUN apk add --no-cache supervisor && \
     chmod +x entrypoint.sh mysql && \
-    chown -R nginx:nginx /etc/nginx /var/cache/nginx
+    chown -R nginx:nginx /app /etc/nginx /var/cache/nginx
     
 # --- 3. 设置环境变量默认值 ---
 ENV UUID="a6a45391-31fe-4bdd-828c-51f02c943dce"

@@ -1,0 +1,15 @@
+# 排除版本控制目录和文件
+.git
+.gitignore
+
+# 排除 Docker 相关文件
+Dockerfile
+.dockerignore
+
+# 排除文档和 CI/CD 配置
+README.md
+.github/
+
+# 排除常见的临时或本地文件，以备将来之需
+*.log
+.env
